@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">SandClock</string>
+
+    <string name="copyright" translatable="false">%s by rawer</string>
+
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
