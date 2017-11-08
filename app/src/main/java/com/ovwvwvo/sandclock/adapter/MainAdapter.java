@@ -1,12 +1,12 @@
 package com.ovwvwvo.sandclock.adapter;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.ui.SandClockFragment;
+import com.ovwvwvo.sandclock.ui.SecondFragment;
+import com.ovwvwvo.sandclock.ui.ThirdFragment;
 
 /**
  * Created by guang on 2017/11/8.
@@ -23,9 +23,9 @@ public class MainAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return SandClockFragment.newInstance();
         } else if (position == 1) {
-            return SandClockFragment.newInstance();
+            return SecondFragment.newInstance();
         } else {
-            return SandClockFragment.newInstance();
+            return ThirdFragment.newInstance();
         }
     }
 

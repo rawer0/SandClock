@@ -9,7 +9,6 @@ public class SandClockFragment extends BaseFragment {
     private static SandClockFragment singInstance = new SandClockFragment();
 
     public static SandClockFragment newInstance() {
-        // TODO: 2017/11/8 singInstance
-        return new SandClockFragment();
+        return singInstance;
     }
 }
