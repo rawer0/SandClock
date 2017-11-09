@@ -8,9 +8,7 @@ import android.support.v4.app.Fragment;
 
 public class ThirdFragment extends Fragment {
 
-    private static ThirdFragment singInstance = new ThirdFragment();
-
     public static ThirdFragment newInstance() {
-        return singInstance;
+        return new ThirdFragment();
     }
 }

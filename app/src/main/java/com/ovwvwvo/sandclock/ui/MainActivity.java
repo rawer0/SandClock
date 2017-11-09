@@ -48,5 +48,4 @@ public class MainActivity extends BaseActivity {
         MainAdapter adapter = new MainAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
     }
-
 }
