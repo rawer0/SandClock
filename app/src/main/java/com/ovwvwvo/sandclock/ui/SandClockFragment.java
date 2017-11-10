@@ -1,5 +1,8 @@
 package com.ovwvwvo.sandclock.ui;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -40,6 +43,7 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
     private final static int GRID_LAYOUT = 2;
     private int currentLayout = LIST_LAYOUT;
 
+    private MainActivity activity;
     private SandClockPresenter presenter;
     private SandClockAdapter adapter;
 
@@ -64,11 +68,25 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof MainActivity)
+            activity = (MainActivity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        activity = null;
+    }
+
     private void initView() {
         listDecoration = new DividerItemDecoration(getContext(), LinearLayout.VERTICAL);
         gridIecoration = new DividerGridItemDecoration(getContext());
 //        recyclerView.addItemDecoration(gridIecoration);
 
+//        recyclerView.addItemDecoration(listDecoration);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -88,6 +106,18 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
         recyclerView.setAdapter(adapter);
 
         swipeRefreshLayout.setOnRefreshListener(this);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (activity != null)
+                    if (dy > 0)
+                        activity.hideBootomNavigation();
+                    else activity.showBootomNavigation();
+
+            }
+        });
     }
 
     @Override

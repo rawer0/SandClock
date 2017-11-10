@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="96dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_red_light" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/space_normal"
+        android:text="春节"
+        android:textColor="@color/title_grey_22"
+        android:textSize="@dimen/text_size_large_2"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/space_normal"
+        android:layout_toEndOf="@id/title"
+        android:layout_toRightOf="@id/title"
+        android:text="还有"
+        android:textColor="@color/title_grey_22"
+        android:textSize="@dimen/text_size_large_1" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/space_normal"
+        android:layout_toEndOf="@id/desc"
+        android:layout_toRightOf="@id/desc"
+        android:background="@drawable/shape_stroke"
+        android:paddingBottom="@dimen/space_small_2"
+        android:paddingLeft="@dimen/space_small_1"
+        android:paddingRight="@dimen/space_small_1"
+        android:paddingTop="@dimen/space_small_2"
+        android:text="8"
+        android:textColor="@color/title_grey_22"
+        android:textSize="@dimen/text_size_large_2" />
+
+    <TextView
+        android:id="@+id/tian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/space_normal"
+        android:layout_toEndOf="@id/time"
+        android:layout_toRightOf="@id/time"
+        android:text="天"
+        android:textColor="@color/title_grey_22"
+        android:textSize="@dimen/text_size_large_1" />
+</RelativeLayout>
