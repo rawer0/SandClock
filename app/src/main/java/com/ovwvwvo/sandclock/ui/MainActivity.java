@@ -1,12 +1,12 @@
 package com.ovwvwvo.sandclock.ui;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.adapter.MainAdapter;
@@ -23,6 +23,8 @@ public class MainActivity extends BaseActivity {
     BottomNavigationView navigation;
     @BindView(R.id.viewPage)
     ViewPager viewPager;
+
+    private boolean isShow = true;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -55,10 +57,22 @@ public class MainActivity extends BaseActivity {
     }
 
     public void hideBootomNavigation() {
-        navigation.setVisibility(View.GONE);
+        if (!isShow) return;
+        int top = navigation.getTop();
+        startAnim(top, top + navigation.getHeight());
+        isShow = false;
     }
 
     public void showBootomNavigation() {
-        navigation.setVisibility(View.VISIBLE);
+        if (isShow) return;
+        isShow = true;
+        int top = navigation.getTop();
+        startAnim(top + navigation.getHeight(), top);
+    }
+
+    private void startAnim(float startPosition, float endPosition) {
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(navigation, "y", startPosition, endPosition);
+        objectAnimator.setDuration(350);
+        objectAnimator.start();
     }
 }

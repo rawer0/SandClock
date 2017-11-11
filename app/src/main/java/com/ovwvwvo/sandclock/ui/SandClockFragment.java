@@ -1,8 +1,6 @@
 package com.ovwvwvo.sandclock.ui;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -112,10 +110,10 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (activity != null)
-                    if (dy > 0)
+                    if (dy > 20)
                         activity.hideBootomNavigation();
-                    else activity.showBootomNavigation();
-
+                    else if (dy < -20)
+                        activity.showBootomNavigation();
             }
         });
     }
