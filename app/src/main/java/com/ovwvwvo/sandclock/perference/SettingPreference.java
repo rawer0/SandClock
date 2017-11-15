@@ -12,6 +12,7 @@ public class SettingPreference extends BasePreference {
 
     private static final String FIRST_LAUNCH = "first_launch";
     private static final String DISPLAY_ADS = "show_ads";
+    private static final String BACKGROUND_PATH = "background_path";
 
 
     public static void setFirstLaunch(Context context, boolean isFirstLaunch) {
@@ -34,5 +35,16 @@ public class SettingPreference extends BasePreference {
     public static boolean getDisplayAds(Context context) {
         SharedPreferences preferences = getPreference(context, FILENAME);
         return preferences.getBoolean(DISPLAY_ADS, true);
+    }
+
+    public static void setBackgroundPath(Context context, String path) {
+        SharedPreferences.Editor editor = getEditor(context, FILENAME);
+        editor.putString(BACKGROUND_PATH, path);
+        editor.apply();
+    }
+
+    public static String getBackgroundPath(Context context) {
+        SharedPreferences preferences = getPreference(context, FILENAME);
+        return preferences.getString(BACKGROUND_PATH, "");
     }
 }
