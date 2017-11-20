@@ -21,6 +21,14 @@ public class SandClockModel extends RealmObject {
     @Ignore
     private long interval;//间隔
 
+    public SandClockModel() {
+    }
+
+    public SandClockModel(String content, long targetDate) {
+        this.content = content;
+        this.targetDate = targetDate;
+    }
+
     public long getId() {
         return id;
     }

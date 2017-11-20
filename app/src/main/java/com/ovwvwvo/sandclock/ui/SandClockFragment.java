@@ -18,7 +18,11 @@ import com.ovwvwvo.common.widget.AutoLoadMoreAdapter;
 import com.ovwvwvo.common.widget.DividerGridItemDecoration;
 import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.adapter.SandClockAdapter;
+import com.ovwvwvo.sandclock.model.SandClockModel;
 import com.ovwvwvo.sandclock.presenter.SandClockPresenter;
+import com.ovwvwvo.sandclock.view.SandClockView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +31,8 @@ import butterknife.ButterKnife;
  * Created by guang on 2017/11/8.
  */
 
-public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapter.OnLoadMoreListener,
+        SwipeRefreshLayout.OnRefreshListener, SandClockView {
 
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -53,7 +58,7 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);//添加 optionsMenu
-        presenter = new SandClockPresenter();
+        presenter = new SandClockPresenter(this);
     }
 
     @Nullable
@@ -61,7 +66,6 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sandclock, container, false);
         ButterKnife.bind(this, view);
-        presenter.loadData();
         initView();
         return view;
     }
@@ -79,11 +83,22 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
         activity = null;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.onDestroy();
+    }
+
     private void initView() {
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        adapter = new SandClockAdapter(getContext());
+        adapter.setLoadMoreListener(this);
+        recyclerView.setAdapter(adapter);
+
         listDecoration = new DividerItemDecoration(getContext(), LinearLayout.VERTICAL);
         gridIecoration = new DividerGridItemDecoration(getContext());
 //        recyclerView.addItemDecoration(gridIecoration);
-
 //        recyclerView.addItemDecoration(listDecoration);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -98,13 +113,6 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
             }
         });
         recyclerView.setLayoutManager(gridLayoutManager);
-
-        adapter = new SandClockAdapter(getContext());
-        adapter.setLoadMoreListener(this);
-        recyclerView.setAdapter(adapter);
-
-        swipeRefreshLayout.setOnRefreshListener(this);
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -120,17 +128,31 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.sandclock_option_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.sandclock_option_menu, menu);
     }
 
     @Override
     public void onLoadMore() {
-
+        presenter.loadData();
     }
 
     @Override
     public void onRefresh() {
+        presenter.loadData();
+    }
 
+    @Override
+    public void onLoadComplete(List<SandClockModel> models) {
+        adapter.setModels(models);
+    }
+
+    @Override
+    public void onShowLoading() {
+    }
+
+    @Override
+    public void onHideLoding() {
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

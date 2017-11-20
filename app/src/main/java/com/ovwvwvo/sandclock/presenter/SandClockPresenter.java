@@ -1,10 +1,10 @@
 package com.ovwvwvo.sandclock.presenter;
 
-import com.ovwvwvo.common.utils.ToastMaster;
+import com.ovwvwvo.sandclock.model.SandClockModel;
 import com.ovwvwvo.sandclock.repo.SandClockDBRepo;
-import com.ovwvwvo.sandclock.rx.EmptyObserver;
+import com.ovwvwvo.sandclock.view.SandClockView;
 
-import io.reactivex.schedulers.Schedulers;
+import java.util.Date;
 
 /**
  * Created by guang on 2017/11/8.
@@ -12,13 +12,28 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SandClockPresenter {
 
+    private SandClockView view;
+    private SandClockDBRepo sandClockDBRepo;
+
+    public SandClockPresenter(SandClockView sandClockView) {
+        this.view = sandClockView;
+        sandClockDBRepo = SandClockDBRepo.newInstance();
+    }
+
     public void loadData() {
-        SandClockDBRepo.newInstance().load()
-                .subscribeOn(Schedulers.io())
-                .doOnSubscribe((subscription) -> ToastMaster.showToastMsg("开始"))
-                .doOnTerminate(() -> ToastMaster.showToastMsg("终端"))
-                .doOnError((e) -> ToastMaster.showToastMsg("出错"))
-                .doOnComplete(() -> ToastMaster.showToastMsg("结束"))
-                .subscribe(new EmptyObserver());
+        sandClockDBRepo.load()
+                .subscribe(sandClockModels -> {
+                    view.onHideLoding();
+                    view.onLoadComplete(sandClockModels);
+                }, Throwable::printStackTrace);
+    }
+
+    public void setData() {
+        Date date = new Date();
+        sandClockDBRepo.addData(new SandClockModel("测试", date.getTime()));
+    }
+
+    public void onDestroy() {
+        sandClockDBRepo.onDestroy();
     }
 }

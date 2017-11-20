@@ -63,7 +63,7 @@
                 android:textSize="@dimen/text_size_large_2" />
 
             <TextView
-                android:id="@+id/tian"
+                android:id="@+id/unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -85,6 +85,7 @@
             android:background="@color/divider_grey_85" />
 
         <TextView
+            android:id="@+id/target"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/divider1"

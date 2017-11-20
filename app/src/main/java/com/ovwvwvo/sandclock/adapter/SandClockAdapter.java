@@ -5,14 +5,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ovwvwvo.common.widget.AutoLoadMoreAdapter;
 import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.model.SandClockModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -69,16 +72,20 @@ public class SandClockAdapter extends AutoLoadMoreAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        SandClockModel model = models.get(position);
         if (holder instanceof MViewHolder) {
+            ((MViewHolder) holder).title.setText(model.getContent());
+            ((MViewHolder) holder).desc.setText("还有");
+            ((MViewHolder) holder).time.setText("1");
+            ((MViewHolder) holder).unit.setText("天");
+            ((MViewHolder) holder).target.setText(new Date(model.getTargetDate()).toString());
         } else {
         }
     }
 
     @Override
     public int getItemCount() {
-        // TODO: 2017/11/8
-//        return models.size() + (isLoading ? 1 : 0);
-        return 10 + (isLoading ? 1 : 0);
+        return models.size() + (isLoading ? 1 : 0);
     }
 
     @Override
@@ -92,6 +99,16 @@ public class SandClockAdapter extends AutoLoadMoreAdapter {
     }
 
     class MViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.title)
+        TextView title;
+        @BindView(R.id.desc)
+        TextView desc;
+        @BindView(R.id.time)
+        TextView time;
+        @BindView(R.id.unit)
+        TextView unit;
+        @BindView(R.id.target)
+        TextView target;
 
         MViewHolder(View itemView) {
             super(itemView);

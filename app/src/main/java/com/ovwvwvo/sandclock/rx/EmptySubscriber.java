@@ -2,28 +2,30 @@ package com.ovwvwvo.sandclock.rx;
 
 import android.util.Log;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 /**
  * Created by guang on 2017/11/15.
  */
 
-public class EmptyObserver<T> implements Observer<T> {
+public class EmptySubscriber<T> implements Subscriber<T> {
+
 
     @Override
-    public void onSubscribe(Disposable d) {
+    public void onSubscribe(Subscription s) {
         Log.i("###$", "onSubscribe");
+        s.request(Integer.MAX_VALUE);
     }
 
     @Override
-    public void onNext(T t) {
-        Log.i("###$", "onNext");
+    public void onNext(Object o) {
+        Log.i("###$", "doOnNext");
 
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(Throwable t) {
         Log.i("###$", "onError");
 
     }
