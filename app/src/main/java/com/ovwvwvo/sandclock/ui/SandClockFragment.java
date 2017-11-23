@@ -1,6 +1,7 @@
 package com.ovwvwvo.sandclock.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -131,6 +132,14 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.sandclock_option_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add) {
+            startActivity(new Intent(getActivity(), AddActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

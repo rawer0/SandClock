@@ -3,18 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ovwvwvo.wallpaper.ui.MainActivity">
     <item
-        android:id="@+id/action_layout"
+        android:id="@+id/action_add"
         android:orderInCategory="100"
         android:title="@string/add"
         app:showAsAction="always" />
+
     <item
-        android:id="@+id/action_bianhua"
-        android:orderInCategory="100"
-        android:title="变换"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/action_paixu"
+        android:id="@+id/action_sort"
         android:orderInCategory="100"
         android:title="排序"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_layout"
+        android:orderInCategory="100"
+        android:title="布局"
+        app:showAsAction="ifRoom" />
 </menu>
