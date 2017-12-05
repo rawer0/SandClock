@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="half_transparent">#afff</color>
+
+    <color name="toolBar_bg">#f7f7f7</color>
 </resources>

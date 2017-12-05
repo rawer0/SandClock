@@ -30,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by guang on 2017/11/8.
+ * Created by guang on 2017/11/8
  */
 
 public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapter.OnLoadMoreListener,
