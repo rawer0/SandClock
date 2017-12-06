@@ -12,11 +12,15 @@ public class SandClockModel extends RealmObject {
 
     private long id;//在 Realm 中基本类型不允许为 null
     @Required
-    private String content;
+    private String name;
     private long targetDate;
 
-    private Integer skin = 0;//可以为 null
-    private int unit = Unit.DALY.ordinal();//单位(年、月、天、小时、分、秒) 可以为 null
+    //以下为可以为 null 的字段
+    private Integer repeat = 0;//重复规则
+    private Integer priority = 0;//优先度
+    private Integer skin = 0;
+    private String remark;
+    private int unit = Unit.DALY.ordinal();//单位(年、月、天、小时、分、秒)
 
     @Ignore
     private long interval;//间隔
@@ -25,7 +29,7 @@ public class SandClockModel extends RealmObject {
     }
 
     public SandClockModel(String content, long targetDate) {
-        this.content = content;
+        this.name = content;
         this.targetDate = targetDate;
     }
 
@@ -37,12 +41,12 @@ public class SandClockModel extends RealmObject {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getTargetDate() {
@@ -71,5 +75,29 @@ public class SandClockModel extends RealmObject {
 
     public void setInterval(long interval) {
         this.interval = interval;
+    }
+
+    public Integer getRepeat() {
+        return repeat;
+    }
+
+    public void setRepeat(Integer repeat) {
+        this.repeat = repeat;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

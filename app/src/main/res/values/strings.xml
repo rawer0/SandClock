@@ -9,4 +9,21 @@
     <string name="load_more">加载更多...</string>
     <string name="add">添加</string>
     <string name="new_day">新事件</string>
+    <string name="action_complete">完成</string>
+    <string name="name_empty_tip">名称不能为空！</string>
+
+    <!--重要度规则-->
+    <string-array name="prioritys">
+        <item>普通</item>
+        <item>重要</item>
+        <item>非常重要</item>
+    </string-array>
+
+    <!--重复性规则-->
+    <string-array name="repeats">
+        <item>从不</item>
+        <item>每月</item>
+        <item>每年</item>
+    </string-array>
+    repeat
 </resources>

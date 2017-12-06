@@ -18,7 +18,7 @@
     <View
         android:id="@+id/shadow_line"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="2dp"
         android:background="@drawable/tab_shadow" />
 
     <RelativeLayout
@@ -101,7 +101,7 @@
             android:layout_height="match_parent"
             android:layout_toRightOf="@+id/repeat_iv"
             android:gravity="center_vertical"
-            android:text="每周"
+            android:text="从不"
             android:textAppearance="@style/Style.TextAppearance.Black" />
 
         <View
@@ -119,19 +119,18 @@
         android:paddingLeft="@dimen/space_normal">
 
         <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/tag_iv"
+            android:id="@+id/priority_iv"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/space_normal"
             android:src="@drawable/ic_circle" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/tag_tv"
+            android:id="@+id/priority_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/tag_iv"
+            android:layout_toRightOf="@+id/priority_iv"
             android:gravity="center_vertical"
             android:text="普通"
             android:textAppearance="@style/Style.TextAppearance.Black" />
@@ -139,7 +138,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_alignLeft="@+id/tag_tv"
+            android:layout_alignLeft="@+id/priority_tv"
             android:layout_alignParentBottom="true"
             android:background="@color/divider_grey_85" />
     </RelativeLayout>

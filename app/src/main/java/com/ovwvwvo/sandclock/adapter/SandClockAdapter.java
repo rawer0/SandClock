@@ -74,7 +74,7 @@ public class SandClockAdapter extends AutoLoadMoreAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         SandClockModel model = models.get(position);
         if (holder instanceof MViewHolder) {
-            ((MViewHolder) holder).title.setText(model.getContent());
+            ((MViewHolder) holder).title.setText(model.getName());
             ((MViewHolder) holder).desc.setText("还有");
             ((MViewHolder) holder).time.setText("1");
             ((MViewHolder) holder).unit.setText("天");
