@@ -19,6 +19,7 @@ import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.model.SandClockModel;
 import com.ovwvwvo.sandclock.presenter.AddPresenter;
 import com.ovwvwvo.sandclock.view.AddView;
+import com.ovwvwvo.sandclock.widgets.DatePickView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -91,7 +92,11 @@ public class AddActivity extends BaseActivity implements TextWatcher, AddView {
 
     @OnClick(R.id.time_tv)
     void onTimeClick() {
-
+        new MaterialDialog.Builder(this)
+                .customView(new DatePickView(this), false)
+                .positiveText(R.string.sure)
+                .negativeText(R.string.cancel)
+                .show();
     }
 
     @OnClick(R.id.repeat_tv)
