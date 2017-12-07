@@ -73,6 +73,12 @@ public class HomeFragment extends BaseFragment implements AutoLoadMoreAdapter.On
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        presenter.loadData();
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof MainActivity)
