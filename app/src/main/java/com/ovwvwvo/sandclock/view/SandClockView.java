@@ -8,11 +8,7 @@ import java.util.List;
  * Copyright ©2017 by rawer
  */
 
-public interface SandClockView {
+public interface SandClockView extends BaseView {
 
     void onLoadComplete(List<SandClockModel> models);
-
-    void onShowLoading();
-
-    void onHideLoding();
 }

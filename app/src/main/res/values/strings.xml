@@ -10,7 +10,10 @@
     <string name="add">添加</string>
     <string name="new_day">新事件</string>
     <string name="action_complete">完成</string>
-    <string name="name_empty_tip">名称不能为空！</string>
+    <string name="name_empty_tip">名称不能为空!</string>
+
+    <string name="add_complete">添加成功</string>
+    <string name="add_failure">添加失败,请重试!</string>
 
     <!--重要度规则-->
     <string-array name="prioritys">

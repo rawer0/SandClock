@@ -40,11 +40,11 @@ public class SandClockDBRepo {
     }
 
     private long generateNewPrimaryKey() {
-        SandClockModel sandClockModel = realm.where(SandClockModel.class).findAllSorted("id", Sort.ASCENDING).last();
-        if (sandClockModel != null) {
-            return sandClockModel.getId();
-        }
-        return 0;
+        RealmResults<SandClockModel> result = realm.where(SandClockModel.class).findAllSorted("id", Sort.ASCENDING);
+        if (result.isEmpty())
+            return 0;
+        else
+            return result.last().getId();
     }
 
     public void onDestroy() {

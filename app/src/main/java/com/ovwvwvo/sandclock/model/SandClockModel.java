@@ -28,6 +28,10 @@ public class SandClockModel extends RealmObject {
     public SandClockModel() {
     }
 
+    public SandClockModel(long targetDate) {
+        this.targetDate = targetDate;
+    }
+
     public SandClockModel(String content, long targetDate) {
         this.name = content;
         this.targetDate = targetDate;

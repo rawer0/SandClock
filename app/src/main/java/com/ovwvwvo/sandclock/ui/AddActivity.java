@@ -17,6 +17,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.ovwvwvo.common.utils.ToastMaster;
 import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.model.SandClockModel;
+import com.ovwvwvo.sandclock.presenter.AddPresenter;
+import com.ovwvwvo.sandclock.view.AddView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +28,7 @@ import butterknife.OnClick;
  * Copyright ©2017 by rawer
  */
 
-public class AddActivity extends BaseActivity implements TextWatcher {
+public class AddActivity extends BaseActivity implements TextWatcher, AddView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.name_et)
@@ -40,7 +42,8 @@ public class AddActivity extends BaseActivity implements TextWatcher {
     @BindView(R.id.remark_tv)
     TextView remarkTv;
 
-    private SandClockModel model = new SandClockModel();
+    private SandClockModel model = new SandClockModel(System.currentTimeMillis());
+    private AddPresenter addPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +51,11 @@ public class AddActivity extends BaseActivity implements TextWatcher {
         setContentView(R.layout.activity_add);
         ButterKnife.bind(this);
 
+        initView();
+        addPresenter = new AddPresenter(this);
+    }
+
+    private void initView() {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -75,6 +83,7 @@ public class AddActivity extends BaseActivity implements TextWatcher {
                     ToastMaster.showToastMsg(R.string.name_empty_tip);
                 else {
                     model.setRemark(remarkTv.getText().toString().trim());
+                    addPresenter.addDay(model);
                 }
         }
         return super.onOptionsItemSelected(item);
@@ -128,6 +137,26 @@ public class AddActivity extends BaseActivity implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable editable) {
+
+    }
+
+    @Override
+    public void onViewDestory() {
+        finish();
+    }
+
+    @Override
+    public void onAddComplete() {
+        onViewDestory();
+    }
+
+    @Override
+    public void onShowLoading() {
+
+    }
+
+    @Override
+    public void onHideLoding() {
 
     }
 }
