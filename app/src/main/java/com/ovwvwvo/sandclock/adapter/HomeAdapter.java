@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  * Created by guang on 2017/11/8.
  */
 
-public class SandClockAdapter extends AutoLoadMoreAdapter {
+public class HomeAdapter extends AutoLoadMoreAdapter {
     private ArrayList<SandClockModel> models = new ArrayList<>();
     private Context context;
 
@@ -33,7 +33,7 @@ public class SandClockAdapter extends AutoLoadMoreAdapter {
         VERTICAL, HORIZONTAL, LOAD_MORE
     }
 
-    public SandClockAdapter(Context context) {
+    public HomeAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
     }

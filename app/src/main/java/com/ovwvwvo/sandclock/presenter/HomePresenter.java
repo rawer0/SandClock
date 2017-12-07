@@ -2,7 +2,7 @@ package com.ovwvwvo.sandclock.presenter;
 
 import com.ovwvwvo.sandclock.model.SandClockModel;
 import com.ovwvwvo.sandclock.repo.SandClockDBRepo;
-import com.ovwvwvo.sandclock.view.SandClockView;
+import com.ovwvwvo.sandclock.view.HomeView;
 
 import java.util.Date;
 
@@ -10,13 +10,13 @@ import java.util.Date;
  * Created by guang on 2017/11/8.
  */
 
-public class SandClockPresenter {
+public class HomePresenter {
 
-    private SandClockView view;
+    private HomeView view;
     private SandClockDBRepo sandClockDBRepo;
 
-    public SandClockPresenter(SandClockView sandClockView) {
-        this.view = sandClockView;
+    public HomePresenter(HomeView homeView) {
+        this.view = homeView;
         sandClockDBRepo = SandClockDBRepo.newInstance();
     }
 

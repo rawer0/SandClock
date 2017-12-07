@@ -19,10 +19,10 @@ import android.widget.LinearLayout;
 import com.ovwvwvo.common.widget.AutoLoadMoreAdapter;
 import com.ovwvwvo.common.widget.DividerGridItemDecoration;
 import com.ovwvwvo.sandclock.R;
-import com.ovwvwvo.sandclock.adapter.SandClockAdapter;
+import com.ovwvwvo.sandclock.adapter.HomeAdapter;
 import com.ovwvwvo.sandclock.model.SandClockModel;
-import com.ovwvwvo.sandclock.presenter.SandClockPresenter;
-import com.ovwvwvo.sandclock.view.SandClockView;
+import com.ovwvwvo.sandclock.presenter.HomePresenter;
+import com.ovwvwvo.sandclock.view.HomeView;
 
 import java.util.List;
 
@@ -33,8 +33,8 @@ import butterknife.ButterKnife;
  * Created by guang on 2017/11/8
  */
 
-public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapter.OnLoadMoreListener,
-        SwipeRefreshLayout.OnRefreshListener, SandClockView {
+public class HomeFragment extends BaseFragment implements AutoLoadMoreAdapter.OnLoadMoreListener,
+        SwipeRefreshLayout.OnRefreshListener, HomeView {
 
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -49,18 +49,18 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
     private int currentLayout = LIST_LAYOUT;
 
     private MainActivity activity;
-    private SandClockPresenter presenter;
-    private SandClockAdapter adapter;
+    private HomePresenter presenter;
+    private HomeAdapter adapter;
 
-    public static SandClockFragment newInstance() {
-        return new SandClockFragment();
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);//添加 optionsMenu
-        presenter = new SandClockPresenter(this);
+        presenter = new HomePresenter(this);
     }
 
     @Nullable
@@ -94,7 +94,7 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
     private void initView() {
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        adapter = new SandClockAdapter(getContext());
+        adapter = new HomeAdapter(getContext());
         adapter.setLoadMoreListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -107,7 +107,7 @@ public class SandClockFragment extends BaseFragment implements AutoLoadMoreAdapt
             @Override
             public int getSpanSize(int position) {
                 if (currentLayout == GRID_LAYOUT) {
-                    boolean bo = SandClockAdapter.ItemType.LOAD_MORE.ordinal() == adapter.getItemViewType(position);
+                    boolean bo = HomeAdapter.ItemType.LOAD_MORE.ordinal() == adapter.getItemViewType(position);
                     return bo ? 2 : 1;
                 } else if (currentLayout == LIST_LAYOUT) {
                     return 2;
