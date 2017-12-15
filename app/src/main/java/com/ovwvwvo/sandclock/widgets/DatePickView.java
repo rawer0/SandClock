@@ -76,7 +76,7 @@ public class DatePickView extends LinearLayout implements WheelView.OnWheelViewL
     public Date getDate() {
         calendar.set(Integer.valueOf(yearWheel.getSeletedItem()),
                 Integer.valueOf(monthWheel.getSeletedItem()) - 1,
-                Integer.valueOf(dayWheel.getSeletedItem()));
+                Integer.valueOf(dayWheel.getSeletedItem()), 0, 0, 0);
         return calendar.getTime();
     }
 

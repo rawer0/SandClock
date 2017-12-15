@@ -2,6 +2,7 @@ package com.ovwvwvo.sandclock.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.ovwvwvo.common.widget.AutoLoadMoreAdapter;
 import com.ovwvwvo.sandclock.R;
+import com.ovwvwvo.sandclock.model.Constants;
 import com.ovwvwvo.sandclock.model.SandClockModel;
 
 import java.util.ArrayList;
@@ -78,7 +80,7 @@ public class HomeAdapter extends AutoLoadMoreAdapter {
             ((MViewHolder) holder).desc.setText("还有");
             ((MViewHolder) holder).time.setText("1");
             ((MViewHolder) holder).unit.setText("天");
-            ((MViewHolder) holder).target.setText(new Date(model.getTargetDate()).toString());
+            ((MViewHolder) holder).target.setText(DateFormat.format(Constants.DATE_FORMAT, new Date(model.getTargetDate())));
         } else {
         }
     }

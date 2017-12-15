@@ -17,11 +17,13 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.ovwvwvo.common.utils.ToastMaster;
 import com.ovwvwvo.sandclock.R;
+import com.ovwvwvo.sandclock.model.Constants;
 import com.ovwvwvo.sandclock.model.SandClockModel;
 import com.ovwvwvo.sandclock.presenter.AddPresenter;
 import com.ovwvwvo.sandclock.view.AddView;
 import com.ovwvwvo.sandclock.widgets.DatePickView;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -33,6 +35,7 @@ import butterknife.OnClick;
  */
 
 public class AddActivity extends BaseActivity implements TextWatcher, AddView {
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.name_et)
@@ -68,7 +71,13 @@ public class AddActivity extends BaseActivity implements TextWatcher, AddView {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         nameEt.addTextChangedListener(this);
-        dateTv.setText(DateFormat.format("yyyy-MM-dd", new Date()));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        dateTv.setText(DateFormat.format(Constants.DATE_FORMAT, calendar.getTime()));
+        model.setTargetDate(calendar.getTimeInMillis());
         priorityTv.setText(getResources().getStringArray(R.array.prioritys)[0]);
         repeatTv.setText(getResources().getStringArray(R.array.repeats)[0]);
     }
@@ -106,7 +115,7 @@ public class AddActivity extends BaseActivity implements TextWatcher, AddView {
                 .positiveText(R.string.sure)
                 .negativeText(R.string.cancel)
                 .onPositive((dialog, which) -> {
-                    dateTv.setText(DateFormat.format("yyyy-MM-dd", datePickView.getDate()));
+                    dateTv.setText(DateFormat.format(Constants.DATE_FORMAT, datePickView.getDate()));
                     model.setTargetDate(datePickView.getDate().getTime());
                 })
                 .show();
