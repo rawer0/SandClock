@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ import com.ovwvwvo.sandclock.presenter.AddPresenter;
 import com.ovwvwvo.sandclock.view.AddView;
 import com.ovwvwvo.sandclock.widgets.DatePickView;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,6 +37,8 @@ public class AddActivity extends BaseActivity implements TextWatcher, AddView {
     Toolbar toolbar;
     @BindView(R.id.name_et)
     EditText nameEt;
+    @BindView(R.id.date_tv)
+    TextView dateTv;
     @BindView(R.id.priority_iv)
     ImageView priorityIv;
     @BindView(R.id.priority_tv)
@@ -63,6 +68,9 @@ public class AddActivity extends BaseActivity implements TextWatcher, AddView {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         nameEt.addTextChangedListener(this);
+        dateTv.setText(DateFormat.format("yyyy-MM-dd", new Date()));
+        priorityTv.setText(getResources().getStringArray(R.array.prioritys)[0]);
+        repeatTv.setText(getResources().getStringArray(R.array.repeats)[0]);
     }
 
     @Override
@@ -90,12 +98,17 @@ public class AddActivity extends BaseActivity implements TextWatcher, AddView {
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick(R.id.time_tv)
+    @OnClick(R.id.date_tv)
     void onTimeClick() {
+        DatePickView datePickView = new DatePickView(this, new Date(model.getTargetDate()));
         new MaterialDialog.Builder(this)
-                .customView(new DatePickView(this), false)
+                .customView(datePickView, false)
                 .positiveText(R.string.sure)
                 .negativeText(R.string.cancel)
+                .onPositive((dialog, which) -> {
+                    dateTv.setText(DateFormat.format("yyyy-MM-dd", datePickView.getDate()));
+                    model.setTargetDate(datePickView.getDate().getTime());
+                })
                 .show();
     }
 
