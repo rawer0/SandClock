@@ -1,12 +1,31 @@
 package com.ovwvwvo.sandclock.model;
 
 /**
- * Created by guang on 2017/11/15.
+ * Created by guang on 2017/11/15
  */
 
 public enum Unit {
-    DALY(0), YEAR(1), MONTH(2), HOUR(3);
+    SECONDS("秒", 0),
+    MINUTE("分", 1),
+    HOUR("小时", 2),
+    DALY("天", 3),
+    WEEK("周", 4),
+    MONTH("月", 5),
+    YEAR("年", 6);
 
-    Unit(int i) {
+    private String name;
+    private int value;
+
+    Unit(String name, int value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                '}';
     }
 }

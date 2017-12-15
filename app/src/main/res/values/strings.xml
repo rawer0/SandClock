@@ -9,16 +9,21 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="load_more">加载更多...</string>
+    <string name="load_more">加载更多…</string>
     <string name="add">添加</string>
     <string name="new_day">新事件</string>
     <string name="action_complete">完成</string>
     <string name="name_empty_tip">名称不能为空!</string>
 
+    <!--重要度规则-->
+    <eat-comment>ddd</eat-comment>
     <string name="add_complete">添加成功</string>
     <string name="add_failure">添加失败,请重试!</string>
     <string name="remark">备注</string>
     <string name="memorial_day">纪念日</string>
+
+    <string name="time_desc_future">还有</string>
+    <string name="time_desc_past">已经</string>
 
     <!--重要度规则-->
     <string-array name="prioritys">
@@ -30,8 +35,19 @@
     <!--重复性规则-->
     <string-array name="repeats">
         <item>从不</item>
+        <item>每周</item>
         <item>每月</item>
         <item>每年</item>
     </string-array>
-    repeat
+
+    <!--时间单位  English 注意单复数-->
+    <string-array name="unit">
+        <item>秒</item>
+        <item>分</item>
+        <item>小时</item>
+        <item>天</item>
+        <item>周</item>
+        <item>月</item>
+        <item>年</item>
+    </string-array>
 </resources>

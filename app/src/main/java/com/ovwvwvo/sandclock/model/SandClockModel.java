@@ -1,7 +1,6 @@
 package com.ovwvwvo.sandclock.model;
 
 import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
 import io.realm.annotations.Required;
 
 /**
@@ -16,16 +15,17 @@ public class SandClockModel extends RealmObject {
     private long targetDate;
 
     //以下为可以为 null 的字段
-    private Integer repeat = 0;//重复规则
-    private Integer priority = 0;//优先度
-    private Integer skin = 0;
-    private String remark;
-    private int unit = Unit.DALY.ordinal();//单位(年、月、天、小时、分、秒)
+    private String desc;   //默认为自动匹配（还有、已经）
+    private int unit = Unit.DALY.ordinal();  //单位(年、月、天、小时、分、秒)
 
-    @Ignore
-    private long interval;//间隔
+    private Integer repeat = 0;  //重复规则
+    private Integer priority = 0;   //优先度
+    private String remark;   //备注
+
+    private Integer skin = 0;
 
     public SandClockModel() {
+
     }
 
     public SandClockModel(long targetDate) {
@@ -61,24 +61,20 @@ public class SandClockModel extends RealmObject {
         this.targetDate = targetDate;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
     public void setUnit(int unit) {
         this.unit = unit;
-    }
-
-    public Integer getSkin() {
-        return skin;
-    }
-
-    public void setSkin(Integer skin) {
-        this.skin = skin;
-    }
-
-    public long getInterval() {
-        return interval;
-    }
-
-    public void setInterval(long interval) {
-        this.interval = interval;
     }
 
     public Integer getRepeat() {
@@ -103,5 +99,13 @@ public class SandClockModel extends RealmObject {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Integer getSkin() {
+        return skin;
+    }
+
+    public void setSkin(Integer skin) {
+        this.skin = skin;
     }
 }

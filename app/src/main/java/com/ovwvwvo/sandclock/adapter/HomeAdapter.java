@@ -2,6 +2,7 @@ package com.ovwvwvo.sandclock.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.ovwvwvo.common.widget.AutoLoadMoreAdapter;
 import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.model.Constants;
 import com.ovwvwvo.sandclock.model.SandClockModel;
+import com.ovwvwvo.sandclock.utils.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -76,12 +78,16 @@ public class HomeAdapter extends AutoLoadMoreAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         SandClockModel model = models.get(position);
         if (holder instanceof MViewHolder) {
+            long interval = TimeUtil.getDayOfInterval(model.getTargetDate());
+            String desc = TextUtils.isEmpty(model.getDesc()) ? getIntervalDesc(interval) : model.getDesc();
+
             ((MViewHolder) holder).title.setText(model.getName());
-            ((MViewHolder) holder).desc.setText("还有");
-            ((MViewHolder) holder).time.setText("1");
-            ((MViewHolder) holder).unit.setText("天");
+            ((MViewHolder) holder).time.setText(String.valueOf(Math.abs(interval)));
+            ((MViewHolder) holder).desc.setText(desc);
+            ((MViewHolder) holder).unit.setText(context.getResources().getStringArray(R.array.unit)[model.getUnit()]);
             ((MViewHolder) holder).target.setText(DateFormat.format(Constants.DATE_FORMAT, new Date(model.getTargetDate())));
         } else {
+
         }
     }
 
@@ -98,6 +104,14 @@ public class HomeAdapter extends AutoLoadMoreAdapter {
 //            return ItemType.VERTICAL.ordinal();
 //        } else return ItemType.HORIZONTAL.ordinal();
         return ItemType.HORIZONTAL.ordinal();
+    }
+
+    public String getIntervalDesc(long interval) {
+        if (interval > 0) {
+            return context.getResources().getString(R.string.time_desc_future);
+        } else {
+            return context.getResources().getString(R.string.time_desc_past);
+        }
     }
 
     class MViewHolder extends RecyclerView.ViewHolder {
