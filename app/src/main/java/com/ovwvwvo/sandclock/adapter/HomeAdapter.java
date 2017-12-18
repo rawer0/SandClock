@@ -7,19 +7,19 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.ovwvwvo.common.widget.AutoLoadMoreAdapter;
 import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.model.Constants;
 import com.ovwvwvo.sandclock.model.SandClockModel;
+import com.ovwvwvo.sandclock.skin.BaseViewHolder;
+import com.ovwvwvo.sandclock.skin.ViewHolderFactory;
 import com.ovwvwvo.sandclock.utils.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -27,23 +27,16 @@ import butterknife.ButterKnife;
  */
 
 public class HomeAdapter extends AutoLoadMoreAdapter {
+
+    public final static int ITEM_TYPE_NORMAL = -1, ITEM_TYPE_LOAD_MORE = -2;
     private ArrayList<SandClockModel> models = new ArrayList<>();
     private Context context;
 
     private LayoutInflater inflater;
-    private int spancount = 2;
-
-    public enum ItemType {
-        VERTICAL, HORIZONTAL, LOAD_MORE
-    }
 
     public HomeAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
-    }
-
-    public void setSpancount(int spancount) {
-        this.spancount = spancount;
     }
 
     public void setModels(List<SandClockModel> models) {
@@ -64,30 +57,26 @@ public class HomeAdapter extends AutoLoadMoreAdapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == ItemType.VERTICAL.ordinal()) {
-            return new MViewHolder(inflater.inflate(R.layout.item_detail_grid, parent, false));
-        } else if (viewType == ItemType.HORIZONTAL.ordinal()) {
-            return new MViewHolder(inflater.inflate(R.layout.item_detail_list, parent, false));
-        } else {
+        if (viewType == ITEM_TYPE_LOAD_MORE) {
             return new LoadMoreViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_loadmore, parent, false));
+        } else {
+            return ViewHolderFactory.getDefault().buildViewHolder(viewType, layoutId -> inflater.inflate(layoutId, parent, false));
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         SandClockModel model = models.get(position);
-        if (holder instanceof MViewHolder) {
+        if (holder instanceof BaseViewHolder) {
             long interval = TimeUtil.getDayOfInterval(model.getTargetDate());
             String desc = TextUtils.isEmpty(model.getDesc()) ? getIntervalDesc(interval) : model.getDesc();
-
-            ((MViewHolder) holder).title.setText(model.getName());
-            ((MViewHolder) holder).time.setText(String.valueOf(Math.abs(interval)));
-            ((MViewHolder) holder).desc.setText(desc);
-            ((MViewHolder) holder).unit.setText(context.getResources().getStringArray(R.array.unit)[model.getUnit()]);
-            ((MViewHolder) holder).target.setText(DateFormat.format(Constants.DATE_FORMAT, new Date(model.getTargetDate())));
-        } else {
-
+            BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
+            baseViewHolder.setTitle(model.getName());
+            baseViewHolder.setDesc(desc);
+            baseViewHolder.setTime(String.valueOf(Math.abs(interval)));
+            baseViewHolder.setUnit(context.getResources().getStringArray(R.array.unit)[model.getUnit()]);
+            baseViewHolder.setTarget("" + DateFormat.format(Constants.DATE_FORMAT, new Date(model.getTargetDate())));
         }
     }
 
@@ -98,37 +87,18 @@ public class HomeAdapter extends AutoLoadMoreAdapter {
 
     @Override
     public int getItemViewType(int position) {
-//        if (position >= models.size())
-//            return ItemType.LOAD_MORE.ordinal();
-//        else if (spancount == 2) {
-//            return ItemType.VERTICAL.ordinal();
-//        } else return ItemType.HORIZONTAL.ordinal();
-        return ItemType.HORIZONTAL.ordinal();
+        if (position >= models.size())
+            return ITEM_TYPE_LOAD_MORE;
+        else {
+            return models.get(position).getSkin();
+        }
     }
 
-    public String getIntervalDesc(long interval) {
+    private String getIntervalDesc(long interval) {
         if (interval > 0) {
             return context.getResources().getString(R.string.time_desc_future);
         } else {
             return context.getResources().getString(R.string.time_desc_past);
-        }
-    }
-
-    class MViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.title)
-        TextView title;
-        @BindView(R.id.desc)
-        TextView desc;
-        @BindView(R.id.time)
-        TextView time;
-        @BindView(R.id.unit)
-        TextView unit;
-        @BindView(R.id.target)
-        TextView target;
-
-        MViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
         }
     }
 

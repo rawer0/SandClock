@@ -113,7 +113,7 @@ public class HomeFragment extends BaseFragment implements AutoLoadMoreAdapter.On
             @Override
             public int getSpanSize(int position) {
                 if (currentLayout == GRID_LAYOUT) {
-                    boolean bo = HomeAdapter.ItemType.LOAD_MORE.ordinal() == adapter.getItemViewType(position);
+                    boolean bo = HomeAdapter.ITEM_TYPE_LOAD_MORE == adapter.getItemViewType(position);
                     return bo ? 2 : 1;
                 } else if (currentLayout == LIST_LAYOUT) {
                     return 2;

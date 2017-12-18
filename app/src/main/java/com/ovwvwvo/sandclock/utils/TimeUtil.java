@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by guang on 2017/12/15.
+ * Created by guang on 2017/12/15
  */
 
 public class TimeUtil {

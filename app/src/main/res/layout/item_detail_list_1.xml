@@ -45,7 +45,7 @@
         android:textSize="@dimen/text_size_large_2" />
 
     <TextView
-        android:id="@+id/tian"
+        android:id="@+id/unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -55,4 +55,21 @@
         android:text="天"
         android:textColor="@color/title_grey_22"
         android:textSize="@dimen/text_size_large_1" />
+
+    <ImageView
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_above="@id/target"
+        android:layout_alignParentBottom="true"
+        android:background="@color/divider_grey_85" />
+
+    <TextView
+        android:id="@+id/target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="2018 - 1 - 1"
+        android:textSize="@dimen/text_size_small_3" />
 </RelativeLayout>
