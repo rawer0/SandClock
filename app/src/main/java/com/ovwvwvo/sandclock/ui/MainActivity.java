@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -34,10 +34,10 @@ public class MainActivity extends BaseActivity {
                 case R.id.navigation_home:
                     viewPager.setCurrentItem(0);
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_skin:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_me:
                     viewPager.setCurrentItem(2);
                     return true;
             }
@@ -54,6 +54,7 @@ public class MainActivity extends BaseActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         MainAdapter adapter = new MainAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(this);
     }
 
     public void hideBootomNavigation() {
@@ -74,5 +75,25 @@ public class MainActivity extends BaseActivity {
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(navigation, "y", startPosition, endPosition);
         objectAnimator.setDuration(350);
         objectAnimator.start();
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        if (position == 0)
+            navigation.setSelectedItemId(R.id.navigation_home);
+        else if (position == 1)
+            navigation.setSelectedItemId(R.id.navigation_skin);
+        else if (position == 2)
+            navigation.setSelectedItemId(R.id.navigation_me);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
