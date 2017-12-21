@@ -12,7 +12,7 @@ import com.ovwvwvo.common.widget.AutoLoadMoreAdapter;
 import com.ovwvwvo.sandclock.R;
 import com.ovwvwvo.sandclock.model.Constants;
 import com.ovwvwvo.sandclock.model.SandClockModel;
-import com.ovwvwvo.sandclock.skin.BaseViewHolder;
+import com.ovwvwvo.sandclock.skin.mainItem.BaseViewHolder;
 import com.ovwvwvo.sandclock.skin.ViewHolderFactory;
 import com.ovwvwvo.sandclock.utils.TimeUtil;
 
@@ -72,11 +72,13 @@ public class HomeAdapter extends AutoLoadMoreAdapter {
             long interval = TimeUtil.getDayOfInterval(model.getTargetDate());
             String desc = TextUtils.isEmpty(model.getDesc()) ? getIntervalDesc(interval) : model.getDesc();
             BaseViewHolder baseViewHolder = (BaseViewHolder) holder;
-            baseViewHolder.setTitle(model.getName());
+            baseViewHolder.setName(model.getName());
             baseViewHolder.setDesc(desc);
             baseViewHolder.setTime(String.valueOf(Math.abs(interval)));
             baseViewHolder.setUnit(context.getResources().getStringArray(R.array.unit)[model.getUnit()]);
             baseViewHolder.setTarget("" + DateFormat.format(Constants.DATE_FORMAT, new Date(model.getTargetDate())));
+            baseViewHolder.setPriority(context, model.getPriority());
+            baseViewHolder.setRepeat(model.getRepeat());
         }
     }
 

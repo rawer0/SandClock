@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/main_item_height_normal"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:ignore="RtlHardcoded">
+
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/priority"
+        android:paddingLeft="@dimen/space_normal"
+        android:paddingRight="@dimen/space_normal">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:lines="1"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_large_2"
+            android:textStyle="bold"
+            tools:text="哈哈" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_normal"
+            android:layout_toLeftOf="@id/time"
+            android:lines="1"
+            android:textColor="@color/title_grey_22"
+            android:textSize="@dimen/text_size_large_1"
+            tools:text="还有" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_normal"
+            android:layout_marginRight="@dimen/space_normal"
+            android:layout_toLeftOf="@id/unit"
+            android:background="@drawable/shape_stroke"
+            android:lines="1"
+            android:textColor="@color/title_grey_22"
+            android:textSize="@dimen/text_size_large_2"
+            tools:text="8" />
+
+        <TextView
+            android:id="@+id/unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:lines="1"
+            android:textColor="@color/title_grey_22"
+            android:textSize="@dimen/text_size_large_1"
+            tools:text="天" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/priority"
+        android:layout_width="@dimen/space_small_2"
+        android:layout_height="match_parent"
+        tools:background="@color/priority_level_1" />
+
+    <TextView
+        android:id="@+id/target"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/shape_tag_accent_color"
+        android:gravity="center"
+        android:lines="1"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_small_3"
+        tools:text="2018-1-1" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/divider_grey_85" />
+</RelativeLayout>

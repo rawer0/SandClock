@@ -5,6 +5,6 @@
         android:id="@+id/menu_done"
         android:icon="@drawable/ic_done_active"
         android:orderInCategory="1"
-        android:title="@string/action_complete"
+        android:title="@string/complete"
         app:showAsAction="always" />
 </menu>

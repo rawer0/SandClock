@@ -1,5 +1,7 @@
-package com.ovwvwvo.sandclock.skin;
+package com.ovwvwvo.sandclock.skin.mainItem;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,8 +17,8 @@ import butterknife.ButterKnife;
 
 public class ViewHolderDefault extends BaseViewHolder {
 
-    @BindView(R.id.title)
-    TextView titleTv;
+    @BindView(R.id.name)
+    TextView nameTv;
     @BindView(R.id.desc)
     TextView descTv;
     @BindView(R.id.time)
@@ -26,7 +28,7 @@ public class ViewHolderDefault extends BaseViewHolder {
     @BindView(R.id.target)
     TextView targetTv;
 
-    ViewHolderDefault(View itemView) {
+    public ViewHolderDefault(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
@@ -36,8 +38,8 @@ public class ViewHolderDefault extends BaseViewHolder {
     }
 
     @Override
-    public void setTitle(String title) {
-        titleTv.setText(title);
+    public void setName(String title) {
+        nameTv.setText(title);
     }
 
     @Override
@@ -58,6 +60,22 @@ public class ViewHolderDefault extends BaseViewHolder {
     @Override
     public void setTarget(String target) {
         targetTv.setText(target);
+    }
+
+    @Override
+    public void setPriority(Context context, int priority) {
+        if (priority == 1) {
+            nameTv.setTextColor(ContextCompat.getColor(context, R.color.priority_level_1));
+        } else if (priority == 2) {
+            nameTv.setTextColor(ContextCompat.getColor(context, R.color.priority_level_2));
+        } else {
+            nameTv.setTextColor(ContextCompat.getColor(context, android.R.color.black));
+        }
+    }
+
+    @Override
+    public void setRepeat(int repeat) {
+
     }
 
 

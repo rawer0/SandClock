@@ -3,40 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/space_small_1"
-    app:cardBackgroundColor="@android:color/transparent"
+    android:layout_height="@dimen/main_item_height_large"
+    android:layout_marginBottom="@dimen/space_small_2"
+    android:layout_marginLeft="@dimen/space_small_1"
+    android:layout_marginRight="@dimen/space_small_1"
+    android:layout_marginTop="@dimen/space_small_2"
+    app:cardBackgroundColor="@color/half_transparent"
     app:cardCornerRadius="@dimen/space_small_2"
     tools:ignore="RtlHardcoded">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/selector_item_transparent"
-        android:clickable="true">
-
-        <ImageView
-            android:id="@+id/divider"
-            android:layout_width="4dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_red_light" />
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/content"
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:layout_toRightOf="@id/divider">
+            android:layout_height="@dimen/main_item_height_normal"
+            android:paddingLeft="@dimen/space_normal"
+            android:paddingRight="@dimen/space_normal">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/space_normal"
-                android:text="春节"
+                android:lines="1"
                 android:textColor="@color/title_grey_22"
                 android:textSize="@dimen/text_size_large_2"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="春节" />
 
             <TextView
                 android:id="@+id/desc"
@@ -44,11 +44,11 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/space_normal"
-                android:layout_toEndOf="@id/title"
-                android:layout_toRightOf="@id/title"
-                android:text="还有"
+                android:layout_toLeftOf="@id/time"
+                android:lines="1"
                 android:textColor="@color/title_grey_22"
-                android:textSize="@dimen/text_size_large_1" />
+                android:textSize="@dimen/text_size_large_1"
+                tools:text="还有" />
 
             <TextView
                 android:id="@+id/time"
@@ -56,43 +56,41 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/space_normal"
-                android:layout_toEndOf="@id/desc"
-                android:layout_toRightOf="@id/desc"
-                android:text="8"
+                android:layout_marginRight="@dimen/space_normal"
+                android:layout_toLeftOf="@id/unit"
+                android:background="@drawable/shape_stroke"
+                android:lines="1"
                 android:textColor="@color/title_grey_22"
-                android:textSize="@dimen/text_size_large_2" />
+                android:textSize="@dimen/text_size_large_2"
+                tools:text="8" />
 
             <TextView
                 android:id="@+id/unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/space_normal"
-                android:layout_toEndOf="@id/time"
-                android:layout_toRightOf="@id/time"
-                android:text="天"
+                android:lines="1"
                 android:textColor="@color/title_grey_22"
-                android:textSize="@dimen/text_size_large_1" />
+                android:textSize="@dimen/text_size_large_1"
+                tools:text="天" />
+
         </RelativeLayout>
 
-
         <ImageView
-            android:id="@+id/divider1"
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_below="@id/content"
-            android:layout_toRightOf="@id/divider"
             android:background="@color/divider_grey_85" />
 
         <TextView
             android:id="@+id/target"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/divider1"
-            android:layout_toRightOf="@id/divider"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:text="2018 - 1 - 1"
-            android:textSize="@dimen/text_size_small_3" />
-    </RelativeLayout>
+            android:lines="1"
+            android:textSize="@dimen/text_size_small_3"
+            tools:text="2018-1-1" />
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

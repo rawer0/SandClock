@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ovwvwvo.sandclock.ui.AddActivity">
+    tools:context="com.ovwvwvo.sandclock.ui.AddActivity"
+    tools:ignore="RtlHardcoded|RtlSymmetry">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -40,14 +41,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/name_iv"
+            android:layout_toRightOf="@id/name_iv"
             android:hint="@string/memorial_day"
             android:textAppearance="@style/Style.TextAppearance.Black" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_alignLeft="@+id/name_et"
+            android:layout_alignLeft="@id/name_et"
             android:layout_alignParentBottom="true"
             android:background="@color/divider_grey_85" />
     </RelativeLayout>
@@ -69,7 +70,7 @@
             android:id="@+id/date_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/time_iv"
+            android:layout_toRightOf="@id/time_iv"
             android:gravity="center_vertical"
             android:textAppearance="@style/Style.TextAppearance.Black"
             tools:text="2017-12-1" />
@@ -77,7 +78,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_alignLeft="@+id/date_tv"
+            android:layout_alignLeft="@id/date_tv"
             android:layout_alignParentBottom="true"
             android:background="@color/divider_grey_85" />
     </RelativeLayout>
@@ -99,7 +100,7 @@
             android:id="@+id/repeat_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/repeat_iv"
+            android:layout_toRightOf="@id/repeat_iv"
             android:gravity="center_vertical"
             android:textAppearance="@style/Style.TextAppearance.Black"
             tools:text="从不" />
@@ -107,7 +108,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_alignLeft="@+id/repeat_tv"
+            android:layout_alignLeft="@id/repeat_tv"
             android:layout_alignParentBottom="true"
             android:background="@color/divider_grey_85" />
     </RelativeLayout>
@@ -130,7 +131,7 @@
             android:id="@+id/priority_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/priority_iv"
+            android:layout_toRightOf="@id/priority_iv"
             android:gravity="center_vertical"
             android:textAppearance="@style/Style.TextAppearance.Black"
             tools:text="普通" />
@@ -138,7 +139,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_alignLeft="@+id/priority_tv"
+            android:layout_alignLeft="@id/priority_tv"
             android:layout_alignParentBottom="true"
             android:background="@color/divider_grey_85" />
     </RelativeLayout>
@@ -160,7 +161,7 @@
             style="@style/Widget.EditText.Normal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/remark_iv"
+            android:layout_toRightOf="@id/remark_iv"
             android:gravity="center_vertical"
             android:hint="@string/remark"
             android:maxLines="5"
@@ -170,7 +171,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/divider_height"
-            android:layout_alignLeft="@+id/remark_tv"
+            android:layout_alignLeft="@id/remark_tv"
             android:layout_below="@id/remark_tv"
             android:background="@color/divider_grey_85" />
     </RelativeLayout>

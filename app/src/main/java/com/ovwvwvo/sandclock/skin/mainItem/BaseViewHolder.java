@@ -1,5 +1,6 @@
-package com.ovwvwvo.sandclock.skin;
+package com.ovwvwvo.sandclock.skin.mainItem;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -17,7 +18,7 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
 
     public abstract void setModel(SandClockModel model);
 
-    public abstract void setTitle(String title);
+    public abstract void setName(String title);
 
     public abstract void setDesc(String desc);
 
@@ -26,5 +27,9 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
     public abstract void setUnit(String unit);
 
     public abstract void setTarget(String target);
+
+    public abstract void setPriority(Context context,int priority);
+
+    public abstract void setRepeat(int repeat);
 
 }
