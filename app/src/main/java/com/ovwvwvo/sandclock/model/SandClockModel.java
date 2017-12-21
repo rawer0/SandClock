@@ -24,7 +24,7 @@ public class SandClockModel extends RealmObject {
     private Integer priority = 0;   //优先度
     private String remark;   //备注
 
-    private Integer skin = SkinId.SKIN_001;//前两位控制位置(00-主界面; 01-详情页; 10-widget页面) 后8位控制布局 id
+    private Integer skin = SkinId.SKIN_DEFAULT;//前两位控制位置(00-主界面; 01-详情页; 10-widget页面) 后8位控制布局 id
 
     public SandClockModel() {
 
