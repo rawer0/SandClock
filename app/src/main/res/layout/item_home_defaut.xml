@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/main_item_height_normal"
-    android:layout_marginBottom="@dimen/space_small_2"
     android:layout_marginLeft="@dimen/space_small_1"
     android:layout_marginRight="@dimen/space_small_1"
-    android:layout_marginTop="@dimen/space_small_2"
-    app:cardBackgroundColor="@color/half_transparent"
+    android:layout_marginTop="@dimen/space_small_1"
+    app:cardBackgroundColor="@color/cardview_light_background"
     app:cardCornerRadius="@dimen/space_small_2"
     tools:ignore="RtlHardcoded">
 
@@ -16,7 +15,6 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/selector_item_transparent"
         android:clickable="true"
         android:focusable="true"
         android:paddingLeft="@dimen/space_normal"

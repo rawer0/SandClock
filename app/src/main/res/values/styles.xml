@@ -28,7 +28,7 @@
     </style>
 
     <style name="Widget.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">@color/toolBar_bg</item>
+        <item name="android:background">@android:color/white</item>
         <item name="android:actionBarSize">56dp</item>
     </style>
 

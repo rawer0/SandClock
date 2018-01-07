@@ -13,13 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize" />
 
-    <View
-        android:id="@+id/shadow_line"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/toolbar"
-        android:background="@drawable/tab_shadow" />
-
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPage"
         android:layout_width="match_parent"
@@ -32,5 +25,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/color_home_navigation"
+        app:itemTextColor="@color/color_home_navigation"
         app:menu="@menu/navigation" />
+
+    <View
+        android:id="@+id/shadow_line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/tab_shadow" />
 </RelativeLayout>

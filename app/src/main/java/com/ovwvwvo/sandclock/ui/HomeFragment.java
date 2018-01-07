@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
@@ -98,6 +99,7 @@ public class HomeFragment extends BaseFragment implements AutoLoadMoreAdapter.On
     }
 
     private void initView() {
+        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorAccent));
         swipeRefreshLayout.setOnRefreshListener(this);
 
         adapter = new HomeAdapter(getContext());
